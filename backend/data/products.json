@@ -1,0 +1,184 @@
+[
+    {
+        "name":"Cabbage",
+        "price": 30,
+        "ratings": 4,
+        "images":[
+            {
+                "image":"/images/products/cabbage.jpg"
+            }
+        ],
+        "category":"Vegetables",
+        "numOfReviews": 15,
+        "reviews":[]
+    },
+    
+    {
+        "name":"Capsicum",
+        "price": 20,
+        "ratings": 4.5,
+        "images":[
+            {
+                "image":"/images/products/capsicum.jpg"
+            }
+        ],
+        "category":"Vegetables",
+        "numOfReviews": 10,
+        "reviews":[]
+    },
+    
+    {
+        "name":"Garlic",
+        "price": 35,
+        "ratings": 4,
+        "images":[
+            {
+                "image":"/images/products/garlic.jpg"
+            }
+        ],
+        "category":"Vegetables",
+        "numOfReviews": 5,
+        "reviews":[]
+    },
+    
+    {
+        "name":"Beetroot",
+        "price": 20,
+        "ratings": 4.5,
+        "images":[
+            {
+                "image":"/images/products/beetroot.jpg"
+            }
+        ],
+        "category":"Vegetables",
+        "numOfReviews": 23,
+        "reviews":[]
+    },
+    
+    {
+        "name":"Tomatoes",
+        "price": 50,
+        "ratings": 3.2,
+        "images":[
+            {
+                "image":"/images/products/tomatoe.jpg"
+            }
+        ],
+        "category":"Vegetables",
+        "numOfReviews": 7,
+        "reviews":[]
+    },
+    
+    {
+        "name":"Carrots",
+        "price": 36,
+        "ratings": 4,
+        "images":[
+            {
+                "image":"/images/products/carrot.jpg"
+            }
+        ],
+        "category":"Vegetables",
+        "numOfReviews": 20,
+        "reviews":[]
+    },
+    
+    {
+        "name":"Onions",
+        "price": 60,
+        "ratings": 4.5,
+        "images":[
+            {
+                "image":"/images/products/onion.jpg"
+            }
+        ],
+        "category":"Vegetables",
+        "numOfReviews": 30,
+        "reviews":[]
+    },
+    
+    {
+        "name":"Potatoes",
+        "price": 45,
+        "ratings": 3,
+        "images":[
+            {
+                "image":"/images/products/potato.jpg"
+            }
+        ],
+        "category":"Vegetables",
+        "numOfReviews": 21,
+        "reviews":[]
+    },
+    
+    {
+        "name":"Celeriac",
+        "price": 15,
+        "ratings": 4.5,
+        "images":[
+            {
+                "image":"/images/products/celery.jpg"
+            }
+        ],
+        "category":"Vegetables",
+        "numOfReviews": 15,
+        "reviews":[]
+    },
+    {
+        
+        "name":"Apple",
+        "price": 90,
+        "ratings": 3.9,
+        "images":[
+            {
+                "image":"/images/products/apple.jpg"
+            }
+        ],
+        "category":"Fruits",
+        "numOfReviews": 30,
+        "reviews":[]
+    },
+    {
+        
+        "name":"Banana",
+        "price": 30,
+        "ratings": 4.5,
+        "images":[
+            {
+                "image":"/images/products/banana.jpg"
+            }
+        ],
+        "category":"Fruits",
+        "numOfReviews": 15,
+        "reviews":[]
+    },
+    {
+        
+        "name":"Grapes",
+        "price": 50,
+        "ratings": 4.2,
+        "images":[
+            {
+                "image":"/images/products/grapes.jpg"
+            }
+        ],
+        "category":"Fruits",
+        "numOfReviews": 20,
+        "reviews":[]
+    },
+    {
+        
+        "name":"Pineapple",
+        "price": 45,
+        "ratings": 4.5,
+        "images":[
+            {
+                "image":"/images/products/pineapple.jpg"
+            }
+        ],
+        "category":"Fruits",
+        "numOfReviews": 12,
+        "reviews":[]
+    } 
+    
+]
