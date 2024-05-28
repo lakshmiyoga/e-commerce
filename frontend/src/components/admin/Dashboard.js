@@ -3,7 +3,8 @@ import Sidebar from './Sidebar'
 import {useDispatch, useSelector} from 'react-redux';
 import { useEffect } from "react";
 import { getAdminProducts } from "../../actions/productsActions";
-
+import {Link} from 'react-router-dom'
+ 
 const Dashboard = () => {
 
     const { products = [] } = useSelector( state => state.productsState);
@@ -41,12 +42,12 @@ const Dashboard = () => {
                             <div className="card-body">
                                 <div className="text-center card-font-size">Products<br /> <b>{products.length}</b></div>
                             </div>
-                            <a className="card-footer text-white clearfix small z-1" to="/admin/products">
+                            <Link className="card-footer text-white clearfix small z-1" to="/admin/products">
                                 <span className="float-left">View Details</span>
                                 <span className="float-right">
                                     <i className="fa fa-angle-right"></i>
                                 </span>
-                            </a>
+                            </Link>
                         </div>
                     </div>
 
@@ -56,12 +57,12 @@ const Dashboard = () => {
                             <div className="card-body">
                                 <div className="text-center card-font-size">Orders<br /> <b>345</b></div>
                             </div>
-                            <a className="card-footer text-white clearfix small z-1" to="/admin/orders">
+                            <Link className="card-footer text-white clearfix small z-1" to="/admin/orders">
                                 <span className="float-left">View Details</span>
                                 <span className="float-right">
                                     <i className="fa fa-angle-right"></i>
                                 </span>
-                            </a>
+                            </Link>
                         </div>
                     </div>
 

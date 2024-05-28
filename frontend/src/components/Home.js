@@ -5,13 +5,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import Loader from './Layouts/Loader'
 import Product from './Product/Product'
 import { toast } from 'react-toastify';
+import { getProduct } from '../actions/productAction'
+import { useParams } from 'react-router-dom'
 
 
 const Home = () => {
 
     const dispatch = useDispatch();
     const { products, loading, error } = useSelector((state) => state.productsState)
-   
+
+
     const categories = [
         'All category',
         'Vegetables',
@@ -20,10 +23,11 @@ const Home = () => {
 
     const [category, setCategory] = useState('All category');
 
-    console.log(category);
+    console.log(products);
 
 
     console.log(categories)
+
 
     useEffect(() => {
         if (error) {
@@ -54,7 +58,7 @@ const Home = () => {
                             <div className="col-12 col-md-6">
                                 <h4 className="mb-3">Shop By Categories</h4>
                                 <select
-                                    onChange={(e)=>setCategory(e.target.value)}
+                                    onChange={(e) => setCategory(e.target.value)}
                                     className="dropdown_control"
                                     value={category}
                                 >
@@ -68,27 +72,29 @@ const Home = () => {
                         </div>
                     </div>
 
-                    {
-                        categories === 'category' && (  <section id="products" className=" mt-5">
-                        <div className="row">
-                            {products && products.map(product => (
+                    {/* {
+                        categories === 'category' && (<section id="products" className=" mt-5">
+                            <div className="row">
+                                {products && products.map(product => (
 
-                                <Product key={product._id} product={product} />
+                                <Product key={product._id} products={product} />
 
                             ))}
+                               
 
-                        </div>
-                    </section>
+                            </div>
+                        </section>
 
                         )
-                    }
+                    } */}
                     <section id="products" className=" mt-5">
                         <div className="row">
-                            {products && products.map(product => (
+                            {/* {products && products.map(product => (
 
                                 <Product key={product._id} product={product} />
 
-                            ))}
+                            ))} */}
+                             <Product products={products} />
 
                         </div>
                     </section>

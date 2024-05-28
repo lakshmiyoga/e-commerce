@@ -39,11 +39,12 @@ const Vegetables = () => {
                         ) : (
                             <section id="products" className="container mt-5">
                                 <div className="row">
-                                    {vegetable && vegetable.map(product => (
+                                    {/* {vegetable && vegetable.map(product => (
 
                                         <Product key={product._id} product={product} />
 
-                                    ))}
+                                    ))} */}
+                                    <Product products={products} />
 
                                 </div>
                             </section>

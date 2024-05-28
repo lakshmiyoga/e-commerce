@@ -46,6 +46,10 @@ const Register = () => {
     useEffect(() => {
 
         if(isAuthenticated){
+          toast('Register successfully',{
+            type:'success',
+            position:"bottom-center",
+          })
             navigate('/');
             return
         }
@@ -103,7 +107,7 @@ const Register = () => {
                       <img
                           src={avatarPreview}
                           className='rounded-circle'
-                          alt='image'
+                          alt='avatar'
                       />
                   </figure>
               </div>

@@ -3,7 +3,7 @@ import MetaData from '../Layouts/MetaData'
 import {clearAuthError, login} from "../../actions/userActions"
 import { useDispatch, useSelector } from 'react-redux';
 import {  toast } from 'react-toastify';
-import {useNavigate} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 
 const Login = () => {
@@ -12,12 +12,15 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
+
     const {loading, error, isAuthenticated} = useSelector(state => state.authState)
+    const redirect = location.search?'/'+location.search.split('=')[1]:'/';
 
     useEffect(() => {
 
         if(isAuthenticated){
-            navigate('/');
+            navigate(redirect);
         }
         if(error){
            toast.error(error,{
@@ -64,7 +67,7 @@ const Login = () => {
                             />
                         </div>
 
-                        <a href="#" className="float-right mb-4">Forgot Password?</a>
+                        <Link to='/password/forgot' className="float-right mb-4">Forgot Password?</Link>
 
                         <button
                             id="login_button"

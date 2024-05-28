@@ -29,6 +29,12 @@ import Vegetables from './components/Vegetables';
 import Fruits from './components/Fruits';
 import Profile from './components/user/Profile';
 import UpdateProfile from './components/user/UpdateProfile';
+import UpdatePassword from './components/user/UpdatePassword';
+import ForgotPassword from './components/user/ForgotPassword';
+import ResetPassword from './components/user/ResetPassword';
+import Cart from './components/cart/Cart';
+import Shipping from './components/cart/Shipping';
+import ConfirmOrder from './components/cart/ConfirmOrder';
 
 function App() {
 
@@ -44,17 +50,23 @@ function App() {
           <div className="container container-fluid">
             <ToastContainer theme="dark" />
             <Routes>
-              {/* <Route path='/' element={<LandingPage />}></Route>
+              <Route path='/' element={<LandingPage />}></Route>
               <Route path='/allProducts' element={<Home />} ></Route>
               <Route path='/vegetables' element={<Vegetables />} ></Route>
-              <Route path='/fruits' element={<Fruits />} ></Route> */}
-               <Route path='/' element={<Home />} ></Route>
+              <Route path='/fruits' element={<Fruits />} ></Route>
+               {/* <Route path='/' element={<Home />} ></Route> */}
               <Route path='/search/:keyword' element={<ProductSearch />}></Route>
               <Route path='/product/:id' element={<ProductDetail />}></Route>
               <Route path='/login' element={<Login />}></Route>
               <Route path='/register' element={<Register />}></Route>
               <Route path='/myProfile' element={<ProtectedRoute><Profile/></ProtectedRoute>}></Route>
               <Route path='/myProfile/update' element={<ProtectedRoute><UpdateProfile /></ProtectedRoute>}></Route>
+              <Route path='/myProfile/update/password' element={<ProtectedRoute><UpdatePassword /></ProtectedRoute>}></Route>
+              <Route path='/password/forgot' element={<ForgotPassword />}></Route>
+              <Route path='/password/reset/:token' element={<ResetPassword />}></Route>
+              <Route path='/cart' element={<Cart />}></Route>
+              <Route path='/shipping' element={<ProtectedRoute><Shipping/></ProtectedRoute>}></Route>
+              <Route path='/order/confirm' element={<ProtectedRoute><ConfirmOrder/></ProtectedRoute>}></Route>
             </Routes>
           </div>
 

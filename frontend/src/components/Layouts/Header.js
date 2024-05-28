@@ -8,6 +8,7 @@ import { logout } from '../../actions/userActions';
 const Header = () => {
 
   const { isAuthenticated, user } = useSelector(state => state.authState);
+  const {items:cartItems} = useSelector(state =>state.cartState);
   const dispatch = useDispatch();
     const navigate = useNavigate();
     const logoutHandler = () => {
@@ -36,7 +37,7 @@ const Header = () => {
           <Dropdown className='d-inline' >
               <Dropdown.Toggle variant='default text-white pr-5' id='dropdown-basic'>
               <figure className='avatar avatar-nav'>
-                      <Image width="50px" src='./images/default_avatar.png'  />
+                      <Image width="50px" src={user.avatar??'./images/default_avatar.png'}  />
                     </figure>
                 <span>{user.name}</span>
               </Dropdown.Toggle>
@@ -52,8 +53,8 @@ const Header = () => {
        <Link to='/login' className="btn" id="login_btn">Login</Link>}
         
 
-        <span id="cart" className="ml-3">Cart</span>
-        <span className="ml-1" id="cart_count">2</span>
+        <Link to='/cart'><span id="cart" className="ml-3">Cart</span></Link>
+        <span className="ml-1" id="cart_count">{cartItems.length}</span>
       </div>
     </nav>
   )

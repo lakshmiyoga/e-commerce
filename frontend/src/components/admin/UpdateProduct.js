@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import Sidebar from '../admin/Sidebar';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import { updateProduct } from '../../actions/productsActions';
 import { clearProductUpdated, clearError } from '../../slices/productSlice';
 import { toast } from 'react-toastify';
@@ -214,7 +214,7 @@ const UpdateProduct = () => {
                 imagesPreview: product.images.map(image => image.image)
             });
         }
-    }, [product]);
+    }, [product, formData]);
 
     const handleChange = (e) => {
         setFormData({
@@ -361,7 +361,7 @@ const UpdateProduct = () => {
                                                 className="mt-3 mr-2"
                                                 key={image}
                                                 src={image}
-                                                alt="Image Preview"
+                                                alt=" Preview"
                                                 width="55"
                                                 height="52"
                                             />
