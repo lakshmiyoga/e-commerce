@@ -14,7 +14,16 @@ import { loginFail,
     logoutFail,
     updateProfileRequest,
     updateProfileSuccess,
-    updateProfileFail} from "../slices/authSlice";
+    updateProfileFail,
+    updatePasswordRequest,
+    updatePasswordSuccess,
+    updatePasswordFail,
+    forgotPasswordRequest,
+    forgotPasswordSuccess,
+    forgotPasswordFail,
+    resetPasswordRequest,
+    resetPasswordSuccess,
+    resetPasswordFail} from "../slices/authSlice";
 
 
 
@@ -40,7 +49,7 @@ export const login = createAsyncThunk('post/login', async ({email,password},{dis
     try {
        
               dispatch(registerRequest());
-
+              console.log(userData)
               const config = {
                 headers: {
                     'Content-type': 'multipart/form-data'
@@ -98,3 +107,57 @@ export const updateProfile = createAsyncThunk('put/updateProfile', async (userDa
       }
          
 })
+
+export const updatePassword = createAsyncThunk('put/updatePassword', async (userData,{dispatch}) => {
+  try {
+     
+            dispatch(updatePasswordRequest());
+            const config = {
+              headers: {
+                  'Content-type': 'application/json'
+              }
+            }
+            await axios.put(`/api/v1//password/change`, userData,config);         
+            dispatch(updatePasswordSuccess());
+      } catch (error) {
+            dispatch(updatePasswordFail(error.response.data.message));
+      }
+         
+})
+
+export const forgotPassword = createAsyncThunk('post/forgotPassword', async(formData,{dispatch}) => {
+
+  try {
+      dispatch(forgotPasswordRequest())
+      const config = {
+          headers: {
+              'Content-type': 'application/json'
+          }
+      }
+      const { data} =  await axios.post(`/api/v1/password/forgot`, formData, config);
+      dispatch(forgotPasswordSuccess(data))
+  } catch (error) {
+      dispatch(forgotPasswordFail(error.response.data.message))
+  }
+
+})
+
+export const resetPassword = createAsyncThunk('post/resetPassword', async({formData, token},{dispatch}) => {
+
+  try {
+      dispatch(resetPasswordRequest())
+      const config = {
+          headers: {
+              'Content-type': 'application/json'
+          }
+      }
+      const { data} =  await axios.post(`/api/v1/password/reset/${token}`, formData, config);
+      dispatch(resetPasswordSuccess(data))
+  } catch (error) {
+      dispatch(resetPasswordFail(error.response.data.message))
+  }
+
+})
+
+
+

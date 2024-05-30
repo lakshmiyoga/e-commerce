@@ -79,7 +79,7 @@ const NewProduct = () => {
             })
             return
         }
-    }, [isProductCreated, error, dispatch])
+    }, [isProductCreated, error, dispatch, navigate])
 
     return (
         <div className="row">
@@ -169,7 +169,7 @@ const NewProduct = () => {
                                             className="mt-3 mr-2"
                                             key={image}
                                             src={image}
-                                            alt={`Image Preview`}
+                                            alt={` Preview`}
                                             width="55"
                                             height="52"
                                         />

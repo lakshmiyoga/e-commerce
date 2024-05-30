@@ -79,7 +79,7 @@ const ProductList = () => {
             return;
         }
         dispatch(getAdminProducts())
-    }, [dispatch, error, isProductDeleted])
+    }, [dispatch, error, isProductDeleted, productError])
 
     const deleteHandler = (e, id) => {
         e.target.disabled = true;
