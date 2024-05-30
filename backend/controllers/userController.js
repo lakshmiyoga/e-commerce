@@ -11,12 +11,12 @@ const crypto = require('crypto');
 
 //register user
 
-const userRegister = catchAsyncError(async (req, res) => {
+const userRegister = catchAsyncError(async (req, res, next) => {
   const { name, email, password } = req.body;
-
-  // if (!name || !email || !password) {
-  //     return res.status(400).json({ msg: 'Please provide all required fields: name, email, and password' });
-  // }
+    
+  if (!name || !email || !password) {
+      return next(new ErrorHandler('Please provide all required fields: name, email, and password' , 400));
+  }
 
   let avatar;
   const BASE_URL = process.env.BACKEND_URL;
@@ -28,7 +28,7 @@ const userRegister = catchAsyncError(async (req, res) => {
   try {
     let user = await User.findOne({ email });
     if (user) {
-      return res.status(400).json({ msg: 'Email already exists' });
+      return next(new ErrorHandler('Email already exists' , 400));
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -44,7 +44,8 @@ const userRegister = catchAsyncError(async (req, res) => {
     await regUser.save();
     sendToken(regUser, 201, res);
   } catch (error) {
-    return res.status(500).json({ msg: 'Internal Server Error', error: error.message });
+    return next(new ErrorHandler('Internal Server Error' , 500));
+    
   }
 });
 
@@ -106,7 +107,7 @@ const requestPasswordReset = async (req, res, next) => {
 
     // Send email with reset link including the token
 
-    const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/password/reset/${user.resetPasswordToken}`
+    const resetUrl = `${process.env.FRONTEND_URL}/password/reset/${user.resetPasswordToken}`
     const message = `Your password reset url is as follows \n\n ${resetUrl} \n\n If you have not request this email, then ignore it.`
 
     // Code to send email goes here
@@ -151,6 +152,26 @@ const resetPassword = catchAsyncError(async (req, res, next) => {
   sendToken(user, 201, res)
 
 })
+
+//Change Password  - api/v1/password/change
+const changePassword = catchAsyncError(async (req, res, next) => {
+  const user = await User.findById(req.user.id).select('+password');
+
+  // Check old password
+  const isMatch = await bcrypt.compare(req.body.oldPassword, user.password);
+  if (!isMatch) {
+    return next(new ErrorHandler('Old password is incorrect', 401));
+  }
+
+  // Hashing the new password before saving it
+  const salt = await bcrypt.genSalt(10);
+  user.password = await bcrypt.hash(req.body.password, salt);
+  await user.save();
+
+  res.status(200).json({
+    success: true,
+  });
+});
 
 // get user profile
 
@@ -210,4 +231,4 @@ const updateUserProfile = catchAsyncError(async (req, res, next) => {
 
 
 
-module.exports = { userRegister, userLogin, logoutUser, requestPasswordReset, resetPassword, getUserProfile, updateUserProfile };
+module.exports = { userRegister, userLogin, logoutUser, requestPasswordReset, resetPassword, getUserProfile, updateUserProfile, changePassword };

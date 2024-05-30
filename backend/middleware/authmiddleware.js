@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
-const catchAsynError = require('./catchAsyncError');
+const catchAsyncError = require('./catchAsyncError');
 const ErrorHandler = require('../utils/errorHandler');
 const User = require("../models/userModel");
 
@@ -22,7 +22,7 @@ function generateToken(user) {
 }
 
 // Middleware for verifying JWT token
-const isAuthenticateUser = catchAsynError(async (req, res, next)=> {
+const isAuthenticateUser = catchAsyncError(async (req, res, next)=> {
   const {token} = req.cookies;
 
   if (!token) {
