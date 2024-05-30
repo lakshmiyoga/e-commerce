@@ -14,7 +14,7 @@ const Home = () => {
     const dispatch = useDispatch();
     const { products, loading, error } = useSelector((state) => state.productsState)
 
-
+console.log(products)
     const categories = [
         'All category',
         'Vegetables',

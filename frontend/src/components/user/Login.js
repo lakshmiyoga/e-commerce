@@ -15,13 +15,13 @@ const Login = () => {
     const location = useLocation();
 
     const {loading, error, isAuthenticated} = useSelector(state => state.authState)
-    const redirect = location.search?'/'+location.search.split('=')[1]:'/';
+    // const redirect = location.search?'/'+location.search.split('=')[1]:'/';
 
     useEffect(() => {
 
-        if(isAuthenticated){
-            navigate(redirect);
-        }
+        // if(isAuthenticated){
+        //     navigate(redirect);
+        // }
         if(error){
            toast.error(error,{
             position:"bottom-center", 

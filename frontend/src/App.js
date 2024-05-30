@@ -35,11 +35,15 @@ import ResetPassword from './components/user/ResetPassword';
 import Cart from './components/cart/Cart';
 import Shipping from './components/cart/Shipping';
 import ConfirmOrder from './components/cart/ConfirmOrder';
+import { getProducts } from './actions/productsActions';
+import About from './components/Layouts/About';
+import Contact from './components/Layouts/Contact';
 
 function App() {
 
   useEffect(() => {
     store.dispatch(loadUser());
+    store.dispatch(getProducts());
   }, [])
 
   return (
@@ -51,9 +55,11 @@ function App() {
             <ToastContainer theme="dark" />
             <Routes>
               <Route path='/' element={<LandingPage />}></Route>
-              <Route path='/allProducts' element={<Home />} ></Route>
+              {/* <Route path='/allProducts' element={<Home />} ></Route> */}
               <Route path='/vegetables' element={<Vegetables />} ></Route>
               <Route path='/fruits' element={<Fruits />} ></Route>
+              <Route path='/about' element={<About />} ></Route>
+              <Route path='/contact' element={<Contact />} ></Route>
                {/* <Route path='/' element={<Home />} ></Route> */}
               <Route path='/search/:keyword' element={<ProductSearch />}></Route>
               <Route path='/product/:id' element={<ProductDetail />}></Route>
@@ -65,7 +71,7 @@ function App() {
               <Route path='/password/forgot' element={<ForgotPassword />}></Route>
               <Route path='/password/reset/:token' element={<ResetPassword />}></Route>
               <Route path='/cart' element={<Cart />}></Route>
-              <Route path='/shipping' element={<ProtectedRoute><Shipping/></ProtectedRoute>}></Route>
+              <Route path='/shipping' element={<Shipping/>}></Route>
               <Route path='/order/confirm' element={<ProtectedRoute><ConfirmOrder/></ProtectedRoute>}></Route>
             </Routes>
           </div>

@@ -12,7 +12,7 @@ import { newProductRequest, newProductFail, newProductSuccess, deleteProductRequ
 
 
 
-export const getProducts = createAsyncThunk('get/getproducts', async ({ keyword, category }, { dispatch }) => {
+export const getProducts = createAsyncThunk('get/getproducts', async (_, { dispatch }) => {
 
   try {
     dispatch(productsRequest());
@@ -34,19 +34,19 @@ export const getProducts = createAsyncThunk('get/getproducts', async ({ keyword,
     //   link += `?category=${encodeURIComponent(category)}`;
     // }
 
-    if (keyword || category) {
-      link += '?';
+  //   if (keyword || category) {
+  //     link += '?';
   
-      if (keyword && category) {
-          link += `category=${encodeURIComponent(category)}`;
-      } else if (keyword) {
-          link += `keyword=${encodeURIComponent(keyword)}`;
-      } else if (category) {
-          link += `category=${encodeURIComponent(category)}`;
-      }
-  }
+  //     if (keyword && category) {
+  //         link += `category=${encodeURIComponent(category)}`;
+  //     } else if (keyword) {
+  //         link += `keyword=${encodeURIComponent(keyword)}`;
+  //     } else if (category) {
+  //         link += `category=${encodeURIComponent(category)}`;
+  //     }
+  // }
     const { data } = await axios.get(link);
-    console.log(data)
+    // console.log(data)
     dispatch(productsSuccess(data));
   } catch (error) {
     dispatch(productsFail(error.response.data.message));

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { Fragment, useState } from "react";
 import { countries } from 'countries-list'
@@ -8,7 +8,7 @@ import StepsCheckOut from './StepsCheckOut';
 import { toast } from 'react-toastify';
 
 export const validateShipping = (shippingInfo, navigate) => {
-   
+//    console.log(shippingInfo)
     if(
         !shippingInfo.address||
         !shippingInfo.city||
@@ -22,7 +22,9 @@ export const validateShipping = (shippingInfo, navigate) => {
             });
             navigate('/shipping')
     }
+    // console.log(shippingInfo)
 } 
+
 
 
 
@@ -36,16 +38,26 @@ const Shipping = () => {
     const [postalCode, setPostalCode] = useState(shippingInfo.postalCode);
     const [country, setCountry] = useState(shippingInfo.country);
     const [state, setState] = useState(shippingInfo.state);
+    // const [address, setAddress] = useState('');
+    // const [city, setCity] = useState('');
+    // const [phoneNo, setPhoneNo] = useState('');
+    // const [postalCode, setPostalCode] = useState('');
+    // const [country, setCountry] = useState('');
+    // const [state, setState] = useState('');
     const countryList = Object.values(countries);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+console.log(address,city, phoneNo, postalCode, country, state)
+// useEffect(()=>{
+
+// },[])
 
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(saveShippingInfo({address, city, phoneNo, postalCode, country, state}))
         navigate('/order/confirm')
     }
-
+// console.log(shippingInfo)
     return (
         <Fragment>
            <StepsCheckOut shipping/>

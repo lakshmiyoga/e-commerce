@@ -68,7 +68,7 @@ const AddCart = ({ productId }) => {
   return (
     <div>
       {quantity === 0 ? (
-        <button onClick={handleAddToCart} className="btn btn-primary d-inline ml-4">Add to Cart</button>
+        <button onClick={handleAddToCart} className="btn d-inline ml-4" style={{backgroundColor:" #02441E", color:"white", borderRadius:"40px"}}>Add</button>
       ) : (
         <div className="stockCounter d-inline">
           <button onClick={handleDecrement} className="btn btn-danger">-</button>

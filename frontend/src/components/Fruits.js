@@ -5,36 +5,41 @@ import { useDispatch, useSelector } from 'react-redux'
 import Loader from './Layouts/Loader'
 import Product from './Product/Product'
 import { toast } from 'react-toastify';
+import Search from './Layouts/Search'
 
 
 
 
 const Fruits = () => {
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const { products, loading, error } = useSelector((state) => state.productsState);
-    
-   console.log(products);
+    const [keyword, setKeyword] = useState("")
 
-    useEffect(() => {
-        if (error) {
-            return toast.error(error, { position: "bottom-center" });
-        }
-        dispatch(getProducts());
+    // useEffect(() => {
+    //     if (error) {
+    //         return toast.error(error, { position: "bottom-center" });
+    //     }
+    //     dispatch(getProducts());
 
-    }, [error, dispatch])
+    // }, [error, dispatch])
    
 
     const fruits = products ? products.filter((product) => product.category === 'Fruits') : [];
-
+    // console.log(fruits);
+    const filteredFruits = keyword ? fruits.filter((fruit) => fruit.name.toLowerCase().includes(keyword.toLowerCase())) : fruits;
+     console.log(filteredFruits);
     return (
         <Fragment>
             {loading ? <Loader /> :
                 <Fragment>
                     <MetaData title={'Buy Best Products'} />
-                    <h1 id="products_heading">Vegetables</h1>
+                    <div className="products_heading">Fruits</div>
+                    <div className="col-12 col-md-6 mt-2 mt-md-0">
+                        <Search keyword={keyword} setKeyword={setKeyword}/>
+                    </div>
                     {
-                        fruits.length === 0 ? (
+                        filteredFruits.length === 0 ? (
                             <h2 style={{textAlign:'center'}}>Product not found</h2>
                         ) : (
                             <section id="products" className="container mt-5">
@@ -44,7 +49,7 @@ const Fruits = () => {
                                         <Product key={product._id} product={product} />
 
                                     ))} */}
-                                    <Product products={products} />
+                                    <Product products={filteredFruits} />
 
                                 </div>
                             </section>

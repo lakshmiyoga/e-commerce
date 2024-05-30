@@ -41,9 +41,9 @@ const ProductSearch = () => {
 
                     <section id="products" className="product_container mt-5">
                         <div className="row product_container">
-                            <div className="col-md-2 mb-3">
+                            {/* <div className="col-md-2 mb-3"> */}
                                 {/* Category Filter */}
-                                <div className="mt-3">
+                                {/* <div className="mt-3">
                                     <h4 className="mb-3 mr-2">Categories</h4>
                                     <ul className="list-unstyled">
                                         {categories.map((items, index) =>
@@ -64,18 +64,20 @@ const ProductSearch = () => {
                                         )}
 
                                     </ul>
-                                </div>
-                            </div>
+                                </div> */}
+                            {/* </div> */}
 
 
-                            <div className=" col-md-9 ">
+                            <div className=" col-md-12 ">
                                 <div className="row">
-
+                                    {/* 
                                     {products && products.map(product => (
 
                                         <Product key={product._id} product={product} />
 
-                                    ))}
+                                    ))} */}
+
+                                    <Product products={products} />
                                 </div>
                             </div>
 

@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate,useLocation } from 'react-router-dom'
 
-const Search = () => {
+const Search = ({keyword, setKeyword}) => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const [keyword, setKeyword] = useState("")
-
+    
     const searchHandler = (e) => {
         e.preventDefault();
-        navigate(`/search/${keyword}`)
+        // navigate(`/search/${keyword}`)
 
     }
 
@@ -24,7 +23,7 @@ const Search = () => {
     },[location])
 
     return (
-        <form onSubmit={searchHandler}>
+        <form onSubmit={searchHandler} className="search-form">
             <div className="input-group">
 
                 <input

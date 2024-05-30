@@ -5,37 +5,44 @@ import { useDispatch, useSelector } from 'react-redux'
 import Loader from './Layouts/Loader'
 import Product from './Product/Product'
 import { toast } from 'react-toastify';
+import Search from './Layouts/Search'
 
 
 
 
 const Vegetables = () => {
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const { products, loading, error } = useSelector((state) => state.productsState);
-    
-   console.log(products);
+    const [keyword, setKeyword] = useState("")
 
-    useEffect(() => {
-        if (error) {
-            return toast.error(error, { position: "bottom-center" });
-        }
-        dispatch(getProducts());
+    console.log(products);
 
-    }, [error, dispatch])
-   
+    //     useEffect(() => {
+    //         if (error) {
+    //             return toast.error(error, { position: "bottom-center" });
+    //         }
+    //         dispatch(getProducts());
 
-    const vegetable = products ? products.filter((product) => product.category === 'Vegetables') : [];
+    //     }, [error, dispatch])
+
+
+    const vegetables = products ? products.filter((product) => product.category === 'Vegetables') : [];
+    const filteredVegetable = keyword ? vegetables.filter((vegetable) => vegetable.name.toLowerCase().includes(keyword.toLowerCase())) : vegetables;
+     console.log(filteredVegetable);
 
     return (
         <Fragment>
             {loading ? <Loader /> :
                 <Fragment>
                     <MetaData title={'Buy Best Products'} />
-                    <h1 id="products_heading">Vegetables</h1>
+                    <div className="products_heading">Vegetables</div>
+                    <div className="col-12 col-md-6 mt-2 mt-md-0">
+                        <Search keyword={keyword} setKeyword={setKeyword}/>
+                    </div>
                     {
-                        vegetable.length === 0 ? (
-                            <h2 style={{textAlign:'center'}}>Product not found</h2>
+                        filteredVegetable.length === 0 ? (
+                            <h2 style={{ textAlign: 'center' }}>Product not found</h2>
                         ) : (
                             <section id="products" className="container mt-5">
                                 <div className="row">
@@ -44,7 +51,7 @@ const Vegetables = () => {
                                         <Product key={product._id} product={product} />
 
                                     ))} */}
-                                    <Product products={products} />
+                                    <Product products={filteredVegetable} />
 
                                 </div>
                             </section>
