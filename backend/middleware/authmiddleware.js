@@ -24,7 +24,7 @@ function generateToken(user) {
 // Middleware for verifying JWT token
 const isAuthenticateUser = catchAsyncError(async (req, res, next)=> {
   const {token} = req.cookies;
-
+// console.log(token)
   if (!token) {
     return next(new ErrorHandler('Login first to handle the resource', 401))
   }

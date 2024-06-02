@@ -26,7 +26,7 @@ const userRegister = catchAsyncError(async (req, res, next) => {
   }
 
   try {
-    let user = await User.findOne({ email });
+    let user = await User.findOne({ email }).select('+password');
     if (user) {
       return next(new ErrorHandler('Email already exists' , 400));
     }
@@ -54,13 +54,16 @@ const userRegister = catchAsyncError(async (req, res, next) => {
 
 const userLogin = catchAsyncError(async (req, res, next) => {
   const { email, password } = req.body;
-
-  let user = await User.findOne({ email });
+// console.log(email, password )
+  let user = await User.findOne({ email }).select('+password');
+  // console.log(user)
   if (!user) {
     return next(new ErrorHandler('Invalid credentials', 401));
   }
+  // console.log(password, user.password)
 
   const isMatch = await bcrypt.compare(password, user.password);
+  
   if (!isMatch) {
     return next(new ErrorHandler('Invalid credentials', 401));
   }
@@ -227,6 +230,58 @@ const updateUserProfile = catchAsyncError(async (req, res, next) => {
     user
   })
 });
+
+//Admin: Get All Users - /api/v1/admin/users
+exports.getAllUsers = catchAsyncError(async (req, res, next) => {
+  const users = await User.find();
+  res.status(200).json({
+       success: true,
+       users
+  })
+})
+
+//Admin: Get Specific User - api/v1/admin/user/:id
+exports.getUser = catchAsyncError(async (req, res, next) => {
+   const user = await User.findById(req.params.id);
+   if(!user) {
+       return next(new ErrorHandler(`User not found with this id ${req.params.id}`))
+   }
+   res.status(200).json({
+       success: true,
+       user
+  })
+});
+
+//Admin: Update User - api/v1/admin/user/:id
+exports.updateUser = catchAsyncError(async (req, res, next) => {
+   const newUserData = {
+       name: req.body.name,
+       email: req.body.email,
+       role: req.body.role
+   }
+
+   const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+       new: true,
+       runValidators: true,
+   })
+
+   res.status(200).json({
+       success: true,
+       user
+   })
+})
+
+//Admin: Delete User - api/v1/admin/user/:id
+exports.deleteUser = catchAsyncError(async (req, res, next) => {
+   const user = await User.findById(req.params.id);
+   if(!user) {
+       return next(new ErrorHandler(`User not found with this id ${req.params.id}`))
+   }
+   await user.remove();
+   res.status(200).json({
+       success: true,
+   })
+})
 
 
 

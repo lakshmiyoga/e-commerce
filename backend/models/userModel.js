@@ -15,7 +15,8 @@ email:{
 password:{
     type:String,
     required:[true, 'Please enter password'] ,
-    minlength:[6, 'Password must be at least 6 characters long']
+    minlength:[6, 'Password must be at least 6 characters long'],
+    select: false
 
 },
 avatar: {

@@ -6,23 +6,25 @@ const crypto = require("crypto");
 //create orders
 const payment = catchAsyncError( async (req, res, next) => {
 	try {
+		console.log(req.body)
 		const instance = new Razorpay({
 			key_id: process.env.KEY_ID,
 			key_secret: process.env.KEY_SECRET,
 		});
 
 		const options = {
-			amount: req.body.amount * 100,
+			amount: req.body.total * 100,
 			currency: "INR",
 			receipt: crypto.randomBytes(10).toString("hex"),
 		};
 
 		instance.orders.create(options, (error, order) => {
 			if (error) {
-				console.log(error);
+				// console.log(error);
 				// return res.status(500).json({ message: "Something Went Wrong!" });
                 return next(new ErrorHandler("Something Went Wrong!", 500))
 			}
+			// console.log(order)
 			res.status(200).json({ data: order });
 		});
 	} catch (error) {
