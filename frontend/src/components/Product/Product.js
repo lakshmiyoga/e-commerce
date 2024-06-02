@@ -83,9 +83,10 @@ const Product = ({ products }) => {
     return (
         <div className="container mt-5">
             <div className="table-responsive container-product">
-                <table className="table table-bordered table-hover">
+                <table className="table table-bordered ">
                     <thead>
                         <tr>
+                            <th>S.No</th>
                             <th>Products Image</th>
                             <th>Products Name</th>
                             <th>Price</th>
@@ -96,15 +97,16 @@ const Product = ({ products }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {products && products.map(product => (
+                        {products && products.map((product,index) => (
                             <tr key={product._id}>
-                                <td className="Products Image text-center">
+                                <td>{index+1}</td>
+                                <td className="Products Image text-center" >
                                     {product.images[0] && product.images[0].image && (
                                         <img
                                             className="img-fluid"
                                             src={product.images[0].image}
                                             alt={capitalizeFirstLetter(product.name)}
-                                            style={{ width: '100px' }}
+                                            style={{ width: '40%', height:'40%' }}
                                         />
                                     )}
                                 </td>
@@ -118,7 +120,7 @@ const Product = ({ products }) => {
                             </td>
                             <td>{product.numOfReviews}</td> */}
 
-                                <td className="Price">${product.price} (per kg)</td>
+                                <td className="Price">Rs{product.price} (per kg)</td>
                                 <td className="Weight">
                                     <select
                                         value={weight[product._id] || ''}

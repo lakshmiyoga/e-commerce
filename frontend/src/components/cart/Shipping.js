@@ -57,7 +57,7 @@ console.log(address,city, phoneNo, postalCode, country, state)
         dispatch(saveShippingInfo({address, city, phoneNo, postalCode, country, state}))
         navigate('/order/confirm')
     }
-// console.log(shippingInfo)
+console.log(shippingInfo)
     return (
         <Fragment>
            <StepsCheckOut shipping/>

@@ -214,7 +214,7 @@ const UpdateProduct = () => {
                 imagesPreview: product.images.map(image => image.image)
             });
         }
-    }, [product, formData]);
+    }, [product]);
 
     const handleChange = (e) => {
         setFormData({

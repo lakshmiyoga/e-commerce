@@ -9,11 +9,7 @@ import Search from './Layouts/Search'
 import Header from './Layouts/Header'
 
 
-
-
-const Vegetables = () => {
-
-    // const dispatch = useDispatch();
+const Keerai = () => {
     const { products, loading, error } = useSelector((state) => state.productsState);
     const [keyword, setKeyword] = useState("")
 
@@ -28,9 +24,9 @@ const Vegetables = () => {
     //     }, [error, dispatch])
 
 
-    const vegetables = products ? products.filter((product) => product.category === 'Vegetables') : [];
-    const filteredVegetable = keyword ? vegetables.filter((vegetable) => vegetable.name.toLowerCase().includes(keyword.toLowerCase())) : vegetables;
-     console.log(filteredVegetable);
+    const Keeraigal = products ? products.filter((product) => product.category === 'Keerai') : [];
+    const filteredKeerai = keyword ? Keeraigal.filter((Keerai) => Keerai.name.toLowerCase().includes(keyword.toLowerCase())) : Keeraigal;
+     console.log(filteredKeerai);
 
     return (
         <Fragment>
@@ -38,12 +34,12 @@ const Vegetables = () => {
             {loading ? <Loader /> :
                 <Fragment>
                     <MetaData title={'Buy Best Products'} />
-                    <div className="products_heading">Vegetables</div>
+                    <div className="products_heading">Keerai</div>
                     <div className="col-12 col-md-6 mt-2 mt-md-0">
                         <Search keyword={keyword} setKeyword={setKeyword}/>
                     </div>
                     {
-                        filteredVegetable.length === 0 ? (
+                        filteredKeerai.length === 0 ? (
                             <h2 style={{ textAlign: 'center' }}>Product not found</h2>
                         ) : (
                             <section id="products" className="container mt-5">
@@ -53,7 +49,7 @@ const Vegetables = () => {
                                         <Product key={product._id} product={product} />
 
                                     ))} */}
-                                    <Product products={filteredVegetable} />
+                                    <Product products={filteredKeerai} />
 
                                 </div>
                             </section>
@@ -66,4 +62,4 @@ const Vegetables = () => {
     )
 }
 
-export default Vegetables
+export default Keerai

@@ -1,20 +1,20 @@
 import React from 'react'
 import Search from './Search'
-import {Link, useNavigate} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import { Dropdown, Image} from 'react-bootstrap'
+import { Dropdown, Image } from 'react-bootstrap'
 import { logout } from '../../actions/userActions';
 
 const Header = () => {
 
   const { isAuthenticated, user } = useSelector(state => state.authState);
-  const {items:cartItems} = useSelector(state =>state.cartState);
+  const { items: cartItems } = useSelector(state => state.cartState);
   const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const logoutHandler = () => {
-      dispatch(logout);
-      navigate('/')
-    }
+  const navigate = useNavigate();
+  const logoutHandler = () => {
+    dispatch(logout);
+    navigate('/')
+  }
 
 
   return (
@@ -31,7 +31,7 @@ const Header = () => {
     //   <Link to='/about'><span id="cart" className="ml-3">ABOUT US</span></Link>
     //   <Link to='/cart'><span id="cart" className="ml-3">ORDER NOW</span></Link>
     //   <Link to='/contact'><span id="cart" className="ml-3">CONTACT</span></Link>
-          
+
     //   <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
     //   {isAuthenticated ?
     //     (
@@ -52,7 +52,7 @@ const Header = () => {
     //     ) 
     //    :
     //    <Link to='/login' className="btn" id="login_btn">Login</Link>}
-        
+
 
     //     <Link to='/cart'><span id="cart" className="ml-3">Cart</span></Link>
     //     <span className="ml-1" id="cart_count">{cartItems.length}</span>
@@ -60,22 +60,22 @@ const Header = () => {
     //   </div>
     // </nav>
     <nav className="navbar navbar-expand-lg navbar-light ">
-      <div className="container-fluid">
+      <div className=" container container-fluid">
         <div>
-        <Link to="/" className="navbar-brand">
-          <img width="300px" src="../images/logo.png" alt="logo" />
-        </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+          <Link to="/" className="navbar-brand">
+            <img width="300px" src="../images/logo.png" alt="logo" />
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
         </div>
         <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul className="navbar-nav">
@@ -85,8 +85,26 @@ const Header = () => {
             <li className="nav-item">
               <Link to="/about" className="nav-link">ABOUT US</Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link to="/cart" className="nav-link">ORDER NOW</Link>
+            </li> */}
+            <li className="nav-item dropdown">
+              <Dropdown>
+                <Dropdown.Toggle as="div" className="nav-link" id="orderNowDropdown">
+                  ORDER NOW
+                </Dropdown.Toggle>
+                <Dropdown.Menu aria-labelledby="orderNowDropdown">
+                  <Dropdown.Item onClick={() => navigate('/vegetables')} className="text-dark">
+                    Vegetables
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={() => navigate('/fruits')} className="text-dark">
+                    Fruits
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={() => navigate('/keerai')} className="text-dark">
+                    Keerai
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </li>
             <li className="nav-item">
               <Link to="/contact" className="nav-link">CONTACT</Link>
@@ -120,14 +138,14 @@ const Header = () => {
               </li>
             ) : (
               <li className="nav-item">
-                <Link to="/login" className="nav-link btn" id="login_btn">
-                  Login
+                <Link to="/login" className="nav-link" id="login_btn">
+                  LOGIN
                 </Link>
               </li>
             )}
             <li className="nav-item">
               <Link to="/cart" className="nav-link">
-                Cart
+                CART
                 <span className="badge bg-secondary ml-1" id="cart_count">
                   {cartItems.length}
                 </span>
@@ -139,7 +157,7 @@ const Header = () => {
     </nav>
   );
 
-  
+
 }
 
 export default Header

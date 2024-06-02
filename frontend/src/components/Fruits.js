@@ -6,6 +6,8 @@ import Loader from './Layouts/Loader'
 import Product from './Product/Product'
 import { toast } from 'react-toastify';
 import Search from './Layouts/Search'
+import Header from './Layouts/Header'
+import Footer from './Layouts/Footer'
 
 
 
@@ -31,6 +33,7 @@ const Fruits = () => {
      console.log(filteredFruits);
     return (
         <Fragment>
+            {/* <Header/> */}
             {loading ? <Loader /> :
                 <Fragment>
                     <MetaData title={'Buy Best Products'} />
@@ -58,6 +61,7 @@ const Fruits = () => {
 
                 </Fragment>
             }
+            {/* <Footer/> */}
         </Fragment>
     )
 }

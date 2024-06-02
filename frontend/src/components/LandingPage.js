@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify';
 import Loader from './Layouts/Loader';
 import Search from './Layouts/Search';
+import Header from './Layouts/Header';
+import Footer from './Layouts/Footer';
 
 const LandingPage = () => {
   // const dispatch = useDispatch();
@@ -22,6 +24,7 @@ const LandingPage = () => {
   //   }, [error, dispatch])
   return (
     <div>
+      {/* <Header/> */}
       
       <div className="products_heading">Home</div>
       
@@ -32,7 +35,7 @@ const LandingPage = () => {
           loading ? <Loader /> : (
             <div className="row d-flex justify-content-center">
               <div className="col-sm-12 col-md-6 col-lg-3 my-3">
-                <div className="card p-3 rounded">
+                <div className="card p-3 rounded" >
                   <Link to="/vegetables">
                     <div className="d-flex justify-content-center align-items-center">
                       <img
@@ -71,11 +74,13 @@ const LandingPage = () => {
 
               <div className="col-sm-12 col-md-6 col-lg-3 my-3">
                 <div className="card p-3 rounded">
+                <Link to="/keerai">
                   <img
                     className="card-img-top mx-auto"
                     src="../images/celeries.jpg"
                     alt="celeries"
                   />
+                  </Link>
                   <div className="card-body d-flex flex-column">
                     <h5 className="card-title">
                       <h2>Keerai</h2>
@@ -89,7 +94,9 @@ const LandingPage = () => {
         }
 
       </div>
+      
     </div>
+    
   );
 };
 

@@ -29,6 +29,7 @@ import { loginFail,
 
 
 export const login = createAsyncThunk('post/login', async ({email,password},{dispatch}) => {
+  // console.log(email,password)
     try {
        
               dispatch(loginRequest());

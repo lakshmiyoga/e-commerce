@@ -19,9 +19,9 @@ const Login = () => {
 
     useEffect(() => {
 
-        // if(isAuthenticated){
-        //     navigate(redirect);
-        // }
+        if(isAuthenticated){
+            navigate('/');
+        }
         if(error){
            toast.error(error,{
             position:"bottom-center", 
@@ -36,12 +36,12 @@ const Login = () => {
         e.preventDefault();
         dispatch(login({email, password}));
     }
-    console.log(email, password);
+    // console.log(email, password);
     return (
-        <Fragment>
+        <div >
             <MetaData title={`Login`} />
             <div className="row wrapper">
-                <div className="col-10 col-lg-5">
+                <div className="col-10 col-lg-5" >
                     <form onSubmit={submitHandler} className="shadow-lg">
                         <h1 className="mb-3">Login</h1>
                         <div className="form-group">
@@ -82,7 +82,7 @@ const Login = () => {
                     </form>
                 </div>
             </div>
-        </Fragment>
+        </div>
     )
 }
 
