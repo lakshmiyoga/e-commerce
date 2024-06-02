@@ -6,9 +6,9 @@ const catchAsyncError = require('../middleware/catchAsyncError');
 
 const downloadPrice = catchAsyncError ( async (req, res ,next) => {
     try {
-        const items = await Item.find({}, { name: 1, price: 1, _id: 1});
+        const items = await Item.find({}, { _id: 1, name: 1, price: 1});
         if (req.query.format === 'csv') {
-            const fields = ['name', 'price', '_id'];
+            const fields = [ '_id','name', 'price'];
             const json2csvParser = new Parser({ fields });
             const csv = json2csvParser.parse(items);
 
