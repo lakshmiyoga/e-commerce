@@ -41,10 +41,12 @@ app.use(cors(corsOptions));
 const products = require('./routes/product')
 const user = require('./routes/user');
 const order = require('./routes/order');
+const itemsRouter = require('./routes/item');
 
 app.use('/api/v1', products);
 app.use('/api/v1',user);
 app.use('/api/v1',order);
+app.use('/api/v1', itemsRouter);
 
 
 
