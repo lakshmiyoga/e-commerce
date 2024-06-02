@@ -17,8 +17,9 @@ const Sidebar = () => {
                     <NavDropdown title={
                         <i className='fa fa-product-hunt'> Product</i>
                     }>
-                        <NavDropdown.Item  onClick={() => navigate('/admin/products')} > <i className='fa fa-shopping-basket'> All</i></NavDropdown.Item>
-                        <NavDropdown.Item  onClick={() => navigate('/admin/products/create')} > <i className='fa fa-plus'> Create </i></NavDropdown.Item>
+                        <NavDropdown.Item  onClick={() => navigate('/admin/products')} > <i className='fa fa-shopping-basket product-dropdown'> All</i></NavDropdown.Item>
+                        <NavDropdown.Item  onClick={() => navigate('/admin/products/create')} > <i className='fa fa-plus product-dropdown'> Create </i></NavDropdown.Item>
+                        <NavDropdown.Item  onClick={() => navigate('/admin/products/updateprice')} > <i className='fa fa-upload product-dropdown'> UpdatePrice </i></NavDropdown.Item>
                     </NavDropdown>
                     </li>
 

@@ -39,6 +39,7 @@ import { getProducts } from './actions/productsActions';
 import About from './components/Layouts/About';
 import Contact from './components/Layouts/Contact';
 import Keerai from './components/Keerai';
+import UpdatePrice from './components/admin/UpdatePrice';
 
 function App() {
   const location = useLocation();
@@ -75,6 +76,7 @@ function App() {
           <Route path="/admin/dashboard" element={<ProtectedRoute isAdmin={true}><Dashboard /></ProtectedRoute>} />
           <Route path="/admin/products" element={<ProtectedRoute isAdmin={true}><ProductList /></ProtectedRoute>} />
           <Route path="/admin/products/create" element={<ProtectedRoute isAdmin={true}><NewProduct /></ProtectedRoute>} />
+          <Route path="/admin/products/updateprice" element={<ProtectedRoute isAdmin={true}><UpdatePrice/></ProtectedRoute>} />
           <Route path="/admin/product/:id" element={<ProtectedRoute isAdmin={true}><UpdateProduct /></ProtectedRoute>} />
         </Routes>
         {showHeaderFooter && <Footer />}

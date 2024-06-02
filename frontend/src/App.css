@@ -923,3 +923,7 @@ ul.CTAs a {
 #login_button #register_button{
   background-color:  #02441E;
 }
+
+.product-dropdown:hover{
+    color:#FED235 ;
+}
