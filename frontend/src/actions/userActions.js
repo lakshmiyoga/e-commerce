@@ -26,6 +26,23 @@ import { loginFail,
     resetPasswordFail} from "../slices/authSlice";
 
 
+    import {
+      usersRequest,
+      usersSuccess,
+      usersFail,
+      userRequest,
+      userSuccess,
+      userFail,
+      deleteUserRequest,
+      deleteUserSuccess,
+      deleteUserFail,
+      updateUserRequest,
+      updateUserSuccess,
+      updateUserFail
+  
+  } from '../slices/userSlice'
+ 
+
 
 
 export const login = createAsyncThunk('post/login', async ({email,password},{dispatch}) => {
@@ -156,6 +173,61 @@ export const resetPassword = createAsyncThunk('post/resetPassword', async({formD
       dispatch(resetPasswordSuccess(data))
   } catch (error) {
       dispatch(resetPasswordFail(error.response.data.message))
+  }
+
+})
+
+export const getUsers = createAsyncThunk('get/getUsers', async (_,{dispatch}) => {
+
+  try {
+      dispatch(usersRequest())
+      const { data }  = await axios.get(`/api/v1/admin/users`);
+      dispatch(usersSuccess(data))
+  } catch (error) {
+      dispatch(usersFail(error.response.data.message))
+  }
+
+})
+
+export const getUser = createAsyncThunk('get/getUser', async (id,{dispatch}) => {
+
+  try {
+      dispatch(userRequest())
+      const { data }  = await axios.get(`/api/v1/admin/user/${id}`);
+      dispatch(userSuccess(data))
+  } catch (error) {
+      dispatch(userFail(error.response.data.message))
+  }
+
+})
+
+export const deleteUser = createAsyncThunk('delete/deleteUser', async ({id},{dispatch}) => {
+
+  try {
+      dispatch(deleteUserRequest())
+      await axios.delete(`/api/v1/admin/user/${id}`);
+      dispatch(deleteUserSuccess())
+  } catch (error) {
+      dispatch(deleteUserFail(error.response.data.message))
+  }
+
+})
+
+export const updateUser = createAsyncThunk('update/updateUser', async ({userId, formData},{dispatch}) => {
+console.log("id:",userId)
+console.log("formData:",formData)
+  
+  try {
+      dispatch(updateUserRequest())
+      const config = {
+          headers: {
+              'Content-type': 'multipart/form-data'
+          }
+      }
+      await axios.put(`/api/v1/admin/user/${userId}`, formData, config);
+      dispatch(updateUserSuccess())
+  } catch (error) {
+      dispatch(updateUserFail(error.response.data.message))
   }
 
 })

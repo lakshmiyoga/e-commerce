@@ -80,17 +80,17 @@ const Header = () => {
         <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link to="/" className="nav-link">HOME</Link>
+              <Link to="/" className="navbar-link">HOME</Link>
             </li>
             <li className="nav-item">
-              <Link to="/about" className="nav-link">ABOUT US</Link>
+              <Link to="/about" className="navbar-link">ABOUT US</Link>
             </li>
             {/* <li className="nav-item">
               <Link to="/cart" className="nav-link">ORDER NOW</Link>
             </li> */}
             <li className="nav-item dropdown">
               <Dropdown>
-                <Dropdown.Toggle as="div" className="nav-link" id="orderNowDropdown">
+                <Dropdown.Toggle as="div" className="navbar-link" id="orderNowDropdown">
                   ORDER NOW
                 </Dropdown.Toggle>
                 <Dropdown.Menu aria-labelledby="orderNowDropdown">
@@ -107,7 +107,7 @@ const Header = () => {
               </Dropdown>
             </li>
             <li className="nav-item">
-              <Link to="/contact" className="nav-link">CONTACT</Link>
+              <Link to="/enquiry" className="navbar-link">CONTACT</Link>
             </li>
             {isAuthenticated ? (
               <li className="nav-item dropdown">
@@ -138,13 +138,13 @@ const Header = () => {
               </li>
             ) : (
               <li className="nav-item">
-                <Link to="/login" className="nav-link" id="login_btn">
+                <Link to="/login" className="navbar-link" id="login_btn">
                   LOGIN
                 </Link>
               </li>
             )}
             <li className="nav-item">
-              <Link to="/cart" className="nav-link">
+              <Link to="/cart" className="navbar-link">
                 CART
                 <span className="badge bg-secondary ml-1" id="cart_count">
                   {cartItems.length}

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -7,25 +8,63 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Order Now</h4>
           <ul>
-            <li>Vegetables</li>
-            <li>Fruits</li>
-            <li>Keerai</li>
+            <li>
+          <Link to ='/vegetables' className="unstyled-link">
+            Vegetables
+            </Link>
+            </li>
+            <li>
+            <Link to ='/fruits' className="unstyled-link">
+            Fruits
+            </Link>
+            </li>
+            <li>
+            <Link to ='/keerai' className="unstyled-link">
+            Keerai
+            </Link>
+            </li>
+            
           </ul>
         </div>
         <div className="footer-section">
           <h4>Information</h4>
           <ul>
-            <li>Terms & Condition</li>
-            <li>Privacy Policy</li>
-            <li>Refund Policy</li>
+            <li>
+            <Link to ='/termsAndConditions' className="unstyled-link">
+            Terms & Condition
+            </Link>
+            </li>
+            <li>
+              <Link to ='/privacyPolicy' className="unstyled-link">
+                Privacy Policy
+                </Link>
+                </li>
+                <li>
+              <Link to ='/refundPolicy' className="unstyled-link">
+                Refund Policy
+                </Link>
+                </li>
           </ul>
         </div>
         <div className="footer-section">
           <h4>Other Links</h4>
           <ul>
-            <li>Login</li>
-            <li>Register</li>
-            <li>Blog</li>
+            <li>
+            <Link to ='/login' className="unstyled-link">
+            Login
+            </Link>
+            </li>
+          <li>
+          <Link to ='/register' className="unstyled-link">
+            Register
+            </Link>
+          </li>
+            <li>
+            <Link to ='/enquiry' className="unstyled-link">
+            Enquiry
+            </Link>
+            </li>
+            
           </ul>
         </div>
         <div className="footer-section">

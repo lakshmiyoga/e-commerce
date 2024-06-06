@@ -37,13 +37,18 @@ import Shipping from './components/cart/Shipping';
 import ConfirmOrder from './components/cart/ConfirmOrder';
 import { getProducts } from './actions/productsActions';
 import About from './components/Layouts/About';
-import Contact from './components/Layouts/Contact';
 import Keerai from './components/Keerai';
-import UpdatePrice from './components/admin/UpdatePrice';
+import TermsAndConditions from './components/Layouts/TermsAndConditions'
+import PrivacyPolicy from './components/Layouts/PrivacyPolicy';
+import RefundPolicy from './components/Layouts/RefundPolicy';
+import Enquiry from './components/user/Enquiry';
+import EnquiryRequest from './components/admin/EnquiryRequest';
+import UserList from './components/admin/UserList';
+import UpdateUser from './components/admin/UpdateUser';
 
 function App() {
   const location = useLocation();
-  const showHeaderFooter = location.pathname !== '/login' && location.pathname !== '/register';
+  // const showHeaderFooter = location.pathname !== '/login' && location.pathname !== '/register';
 
   useEffect(() => {
     store.dispatch(loadUser());
@@ -53,7 +58,8 @@ function App() {
   return (
     <div className="App">
       <HelmetProvider>
-        {showHeaderFooter && <Header />}
+        {/* {showHeaderFooter && <Header />} */}
+        <Header/>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -62,7 +68,10 @@ function App() {
           <Route path="/fruits" element={<Fruits />} />
           <Route path="/keerai" element={<Keerai />} />
           <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/enquiry" element={<Enquiry />} />
+          <Route path="/termsAndConditions" element={<TermsAndConditions />} />
+          <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
+          <Route path="/refundPolicy" element={<RefundPolicy />} />
           <Route path="/search/:keyword" element={<ProductSearch />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/myProfile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
@@ -76,10 +85,13 @@ function App() {
           <Route path="/admin/dashboard" element={<ProtectedRoute isAdmin={true}><Dashboard /></ProtectedRoute>} />
           <Route path="/admin/products" element={<ProtectedRoute isAdmin={true}><ProductList /></ProtectedRoute>} />
           <Route path="/admin/products/create" element={<ProtectedRoute isAdmin={true}><NewProduct /></ProtectedRoute>} />
-          <Route path="/admin/products/updateprice" element={<ProtectedRoute isAdmin={true}><UpdatePrice/></ProtectedRoute>} />
           <Route path="/admin/product/:id" element={<ProtectedRoute isAdmin={true}><UpdateProduct /></ProtectedRoute>} />
+          <Route path="/getenquiry" element={<ProtectedRoute isAdmin={true}><EnquiryRequest /></ProtectedRoute>} />
+          <Route path='/admin/users' element={ <ProtectedRoute isAdmin={true}><UserList/></ProtectedRoute> } />
+          <Route path='/admin/user/:id' element={ <ProtectedRoute isAdmin={true}><UpdateUser/></ProtectedRoute> } />
         </Routes>
-        {showHeaderFooter && <Footer />}
+        {/* {showHeaderFooter && <Footer />} */}
+        <Footer/>
         <ToastContainer theme="dark" />
       </HelmetProvider>
     </div>
