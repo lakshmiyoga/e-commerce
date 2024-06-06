@@ -232,7 +232,7 @@ const updateUserProfile = catchAsyncError(async (req, res, next) => {
 });
 
 //Admin: Get All Users - /api/v1/admin/users
-exports.getAllUsers = catchAsyncError(async (req, res, next) => {
+const getAllUsers = catchAsyncError(async (req, res, next) => {
   const users = await User.find();
   res.status(200).json({
        success: true,
@@ -241,7 +241,7 @@ exports.getAllUsers = catchAsyncError(async (req, res, next) => {
 })
 
 //Admin: Get Specific User - api/v1/admin/user/:id
-exports.getUser = catchAsyncError(async (req, res, next) => {
+const getUser = catchAsyncError(async (req, res, next) => {
    const user = await User.findById(req.params.id);
    if(!user) {
        return next(new ErrorHandler(`User not found with this id ${req.params.id}`))
@@ -253,7 +253,8 @@ exports.getUser = catchAsyncError(async (req, res, next) => {
 });
 
 //Admin: Update User - api/v1/admin/user/:id
-exports.updateUser = catchAsyncError(async (req, res, next) => {
+const updateUser = catchAsyncError(async (req, res, next) => {
+  console.log(req.body)
    const newUserData = {
        name: req.body.name,
        email: req.body.email,
@@ -272,7 +273,7 @@ exports.updateUser = catchAsyncError(async (req, res, next) => {
 })
 
 //Admin: Delete User - api/v1/admin/user/:id
-exports.deleteUser = catchAsyncError(async (req, res, next) => {
+const deleteUser = catchAsyncError(async (req, res, next) => {
    const user = await User.findById(req.params.id);
    if(!user) {
        return next(new ErrorHandler(`User not found with this id ${req.params.id}`))
@@ -286,4 +287,4 @@ exports.deleteUser = catchAsyncError(async (req, res, next) => {
 
 
 
-module.exports = { userRegister, userLogin, logoutUser, requestPasswordReset, resetPassword, getUserProfile, updateUserProfile, changePassword };
+module.exports = { userRegister, userLogin, logoutUser, requestPasswordReset, resetPassword, getUserProfile, updateUserProfile, changePassword,getAllUsers,getUser,updateUser,deleteUser };

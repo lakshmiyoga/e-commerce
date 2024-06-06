@@ -1,5 +1,5 @@
 const express =require('express');
-const { userRegister,userLogin, logoutUser,requestPasswordReset, resetPassword, getUserProfile, updateUserProfile, changePassword} = require('../controllers/userController');
+const { userRegister,userLogin, logoutUser,requestPasswordReset, resetPassword, getUserProfile, updateUserProfile, changePassword, getAllUsers, getUser, updateUser, deleteUser} = require('../controllers/userController');
 const router = express.Router();
 const {isAuthenticateUser, authorizeRoles} = require("../middleware/authmiddleware")
 const multer = require('multer');
@@ -25,6 +25,11 @@ router.get('/myProfile', isAuthenticateUser, getUserProfile);
 router.put('/update', isAuthenticateUser,upload.single('avatar'), updateUserProfile);
 
 
+//Admin routes
+router.get('/admin/users',isAuthenticateUser,authorizeRoles('admin'), getAllUsers);
+router.get('/admin/user/:id',isAuthenticateUser,authorizeRoles('admin'), getUser)
+router.put('/admin/user/:id',isAuthenticateUser,authorizeRoles('admin'), updateUser)
+router.delete('/admin/user/:id',isAuthenticateUser,authorizeRoles('admin'), deleteUser);
 
 
 
